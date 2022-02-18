@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation       Teste Desktop.
 Library             SikuliLibrary
+Test Teardown       Fecha Aba
 
 *** Variables ***
 ${IMAGE_DIR}      ${CURDIR}\\img
@@ -34,6 +35,14 @@ Checar texto
   Wait Until Screen Contain     texto.png
 
 Fecha Notepad
+  Click               fechar.png
+  Sleep               1
+  Click               naoSalvar.png
+
+Fecha Aba
+  run keyword and ignore error  _teardown
+
+_teardown
   Click               fechar.png
   Sleep               1
   Click               naoSalvar.png
